@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zpark.zsh.dao.SeckillDao">
+    <!--为Dao接口提供sql-->
+    <update id="reduceNumber">
+        UPDATE SECKILL SET SECKILL_NUM=SECKILL_NUM-1
+        WHERE SECKILL_ID = #{seckillId} AND START_TIME <![CDATA[ <= ]]> #{killTime}
+        AND END_TIME >= #{killTime} AND SECKILL_NUM>0
+    </update>
+
+    <select id="queryById" resultType="Seckill" parameterType="Integer">
+        SELECT * FROM SECKILL WHERE SECKILL_ID = #{seckillId}
+    </select>
+
+    <select id="queryAll" resultType="Seckill">
+        SELECT * FROM SECKILL
+    </select>
+</mapper>
